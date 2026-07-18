@@ -1,0 +1,23 @@
+# linux-target (192.168.56.20)
+# Path: /etc/audit/rules.d/homelab.rules
+# Load with: sudo augenrules --load
+# Verify with: sudo auditctl -l
+#
+# The -k <key> labels are the glue: auditd stamps matching events with them,
+# and the SPL detections search for the same keys.
+
+# Privilege escalation — watch sensitive account files for writes
+-w /etc/sudoers -p wa -k sudoers_change      # who can sudo
+-w /etc/passwd  -p wa -k passwd_change       # account list
+-w /etc/shadow  -p wa -k shadow_change       # password hashes
+
+# Suspicious process execution — log every program launch (noisy!)
+-a always,exit -F arch=b64 -S execve -k process_execution
+
+# Privileged command use — log every sudo / su execution
+-a always,exit -F path=/usr/bin/sudo -F perm=x -k sudo_use
+-a always,exit -F path=/bin/su      -F perm=x -k su_use
+
+# Data exfiltration indicators
+-w /etc/hosts -p wa -k hosts_modified            # DNS/host hijack
+-a always,exit -F arch=b64 -S connect -k outbound_connection

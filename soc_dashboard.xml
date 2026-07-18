@@ -1,0 +1,100 @@
+<form version="1.1" theme="dark">
+  <label>SOC Home Lab - Security Overview</label>
+
+  <fieldset submitButton="false">
+    <input type="time" token="time_tok">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+
+  <row>
+    <panel>
+      <title>Brute Force SSH Attempts</title>
+      <chart>
+        <search>
+          <query>
+            index=linux_auth sourcetype=linux_secure "Failed password"
+            | rex field=_raw "from (?&lt;src_ip&gt;\d+\.\d+\.\d+\.\d+)"
+            | stats count by src_ip
+            | where count &gt; 5
+          </query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.axisTitleY.text">Failed Attempts</option>
+        <option name="charting.axisTitleX.text">Source IP</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Port Scan / Recon</title>
+      <chart>
+        <search>
+          <query>
+            index=linux_network sourcetype=ufw
+            | rex field=_raw "SRC=(?&lt;src_ip&gt;\d+\.\d+\.\d+\.\d+) DST=(?&lt;dst_ip&gt;\d+\.\d+\.\d+\.\d+) .* DPT=(?&lt;dst_port&gt;\d+)"
+            | stats dc(dst_port) as port_count by src_ip
+            | where port_count &gt; 15
+          </query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.axisTitleY.text">Distinct Ports</option>
+        <option name="charting.axisTitleX.text">Source IP</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Privilege Escalation Events</title>
+      <table>
+        <search>
+          <query>
+            index=linux_audit sourcetype=linux_audit (key=sudoers_change OR key=passwd_change OR key=shadow_change)
+            | stats count by host, key, auid
+          </query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Suspicious Process Execution</title>
+      <table>
+        <search>
+          <query>
+            index=linux_audit sourcetype=linux_audit key=process_execution
+            | rex field=_raw "exe=\"(?&lt;process&gt;[^\"]+)\""
+            | where match(process, "nc|wget|curl|python|bash")
+            | stats count by host, process, auid
+          </query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Data Exfiltration Indicators</title>
+      <table>
+        <search>
+          <query>
+            index=linux_audit sourcetype=linux_audit (key=hosts_modified OR key=outbound_connection)
+            | stats count by host, key, auid
+            | where count &gt; 3 OR key="hosts_modified"
+          </query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+</form>
