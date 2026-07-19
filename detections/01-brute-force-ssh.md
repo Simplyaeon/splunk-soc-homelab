@@ -11,6 +11,12 @@ a classic indicator of a credential-guessing attack (e.g. Hydra, Medusa).
 | Sourcetype | `linux_secure` |
 | Log source | `/var/log/auth.log` |
 
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|---|---|---|
+| Credential Access | Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) |
+
 ## Attack Simulation
 
 **Tool:** `hydra`

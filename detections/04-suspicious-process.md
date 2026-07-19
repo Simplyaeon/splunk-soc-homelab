@@ -13,6 +13,13 @@ interactively-authenticated user.
 | Log source | `/var/log/audit/audit.log` |
 | auditd key | `process_execution` |
 
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID | Maps to |
+|---|---|---|---|
+| Execution | Command and Scripting Interpreter: Unix Shell | [T1059.004](https://attack.mitre.org/techniques/T1059/004/) | `bash`, `nc` |
+| Command and Control | Ingress Tool Transfer | [T1105](https://attack.mitre.org/techniques/T1105/) | `wget`, `curl` |
+
 ## Attack Simulation
 
 **Important:** SSH in **directly as `testuser`** — do not use `su - testuser`.

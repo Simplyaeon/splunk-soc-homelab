@@ -13,6 +13,13 @@ grants themselves elevated or persistent access.
 | Log source | `/var/log/audit/audit.log` |
 | auditd keys | `sudoers_change`, `passwd_change`, `shadow_change` |
 
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID | Maps to |
+|---|---|---|---|
+| Privilege Escalation | Abuse Elevation Control Mechanism: Sudo and Sudo Caching | [T1548.003](https://attack.mitre.org/techniques/T1548/003/) | `sudoers_change` |
+| Persistence / Credential Access | Account Manipulation | [T1098](https://attack.mitre.org/techniques/T1098/) | `passwd_change`, `shadow_change` |
+
 ## Attack Simulation
 
 ```bash

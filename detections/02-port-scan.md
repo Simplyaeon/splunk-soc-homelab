@@ -12,6 +12,13 @@ destination ports in a short window — indicative of network reconnaissance
 | Sourcetype | `ufw` |
 | Log source | `/var/log/ufw.log` |
 
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|---|---|---|
+| Discovery | Network Service Discovery | [T1046](https://attack.mitre.org/techniques/T1046/) |
+| Reconnaissance | Active Scanning: Scanning IP Blocks | [T1595.001](https://attack.mitre.org/techniques/T1595/001/) |
+
 ## Attack Simulation
 
 **Tool:** `nmap`

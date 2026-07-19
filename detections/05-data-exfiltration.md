@@ -13,6 +13,13 @@ domain) and a burst of outbound connections from the same account.
 | Log source | `/var/log/audit/audit.log` |
 | auditd keys | `hosts_modified`, `outbound_connection` |
 
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID | Maps to |
+|---|---|---|---|
+| Impact | Data Manipulation: Stored Data Manipulation | [T1565.001](https://attack.mitre.org/techniques/T1565/001/) | `hosts_modified` |
+| Exfiltration | Exfiltration Over Alternative Protocol | [T1048](https://attack.mitre.org/techniques/T1048/) | `outbound_connection` |
+
 ## Attack Simulation
 
 ```bash

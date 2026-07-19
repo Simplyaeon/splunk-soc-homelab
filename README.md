@@ -64,6 +64,20 @@ this scale.
 
 ---
 
+## MITRE ATT&CK Coverage
+
+| Detection | Tactic | Technique |
+|---|---|---|
+| Brute Force SSH | Credential Access | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) — Password Guessing |
+| Port Scan / Recon | Discovery / Reconnaissance | [T1046](https://attack.mitre.org/techniques/T1046/) — Network Service Discovery, [T1595.001](https://attack.mitre.org/techniques/T1595/001/) — Scanning IP Blocks |
+| Privilege Escalation | Privilege Escalation / Persistence | [T1548.003](https://attack.mitre.org/techniques/T1548/003/) — Sudo and Sudo Caching, [T1098](https://attack.mitre.org/techniques/T1098/) — Account Manipulation |
+| Suspicious Process Execution | Execution / Command and Control | [T1059.004](https://attack.mitre.org/techniques/T1059/004/) — Unix Shell, [T1105](https://attack.mitre.org/techniques/T1105/) — Ingress Tool Transfer |
+| Data Exfiltration | Impact / Exfiltration | [T1565.001](https://attack.mitre.org/techniques/T1565/001/) — Stored Data Manipulation, [T1048](https://attack.mitre.org/techniques/T1048/) — Exfiltration Over Alternative Protocol |
+
+Per-detection mapping details are in each write-up under `detections/`.
+
+---
+
 ## SOC Dashboard
 
 **Classic Dashboard** (Simple XML), source at [`soc_dashboard.xml`](soc_dashboard.xml).
