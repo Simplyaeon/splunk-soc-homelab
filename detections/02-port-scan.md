@@ -46,7 +46,7 @@ index=linux_network sourcetype=ufw
 
 ## Screenshot
 
-_[screenshots/alert_port_scan.png]_
+![Port scan / recon detection triggered in Splunk](../screenshots/alert_port_scan.png)
 
 ## Notes
 

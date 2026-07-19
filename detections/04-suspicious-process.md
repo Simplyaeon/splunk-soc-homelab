@@ -52,7 +52,7 @@ index=linux_audit sourcetype=linux_audit key=process_execution
 
 ## Screenshot
 
-_[screenshots/alert_suspicious_process.png]_
+![Suspicious process execution detection triggered in Splunk](../screenshots/alert_suspicious_process.jpg)
 
 ## Notes
 

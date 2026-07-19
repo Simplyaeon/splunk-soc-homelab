@@ -45,7 +45,7 @@ index=linux_audit sourcetype=linux_audit (key=sudoers_change OR key=passwd_chang
 
 ## Screenshot
 
-_[screenshots/alert_privilege_escalation.png]_
+![Privilege escalation detection triggered in Splunk](../screenshots/alert_privilege_escalation.jpg)
 
 ## Notes
 

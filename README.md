@@ -78,7 +78,17 @@ this scale.
 
 Single time-range input (default Last 24 hours) drives all five panels.
 
-![SOC Dashboard](screenshots/soc_dashboard.png)
+![SOC Dashboard — 5 panels showing brute force, port scan, privilege escalation, suspicious process, and data exfiltration detections](screenshots/soc_dashboard.png)
+
+![SOC Dashboard — secondary view](screenshots/soc_dashboard_2.png)
+
+---
+
+## Triggered Alerts
+
+All 5 scheduled alerts firing in Splunk's Triggered Alerts view:
+
+![Triggered Alerts — all 5 detections firing](screenshots/triggered_alerts.png)
 
 ---
 
@@ -119,7 +129,13 @@ Single time-range input (default Last 24 hours) drives all five panels.
 │   └── 05-data-exfiltration.md
 └── screenshots/
     ├── soc_dashboard.png
-    └── alert_*.png         # one per triggered alert
+    ├── soc_dashboard_2.png
+    ├── triggered_alerts.png
+    ├── alert_brute_force.png
+    ├── alert_port_scan.png
+    ├── alert_privilege_escalation.jpg
+    ├── alert_suspicious_process.jpg
+    └── alert_data_exfiltration.jpg
 ```
 
 ---

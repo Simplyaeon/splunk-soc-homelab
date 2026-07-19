@@ -45,7 +45,7 @@ index=linux_auth sourcetype=linux_secure "Failed password"
 
 ## Screenshot
 
-_[screenshots/alert_brute_force.png]_
+![Brute force SSH detection triggered in Splunk](../screenshots/alert_brute_force.png)
 
 ## Notes
 

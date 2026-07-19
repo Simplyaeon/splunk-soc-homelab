@@ -51,7 +51,7 @@ index=linux_audit sourcetype=linux_audit (key=hosts_modified OR key=outbound_con
 
 ## Screenshot
 
-_[screenshots/alert_data_exfiltration.png]_
+![Data exfiltration detection triggered in Splunk](../screenshots/alert_data_exfiltration.jpg)
 
 ## Notes
 
